@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import BlogList from "./BlogList";
+import BlogForm from "./BlogForm";
+import BlogDetail from "./BlogDetail";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={{ padding: "20px", fontFamily: "Arial" }}>
+        <h1 style={{ textAlign: "center", color: "#007bff" }}>📝 Dynamic Blog App</h1>
+
+        <nav style={{ marginBottom: "20px", textAlign: "center" }}>
+          <Link to="/new">Add Blog</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<BlogList />} />
+          <Route path="/new" element={<BlogForm />} />
+          <Route path="/edit/:id" element={<BlogForm />} />
+          <Route path="/post/:id" element={<BlogDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-export default App;
